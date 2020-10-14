@@ -1,13 +1,31 @@
-﻿@model MenagerTasker.Core.Entities.Manager
+﻿@model ManagerIncludeOverdueTasks
 
 @{
     ViewData["Title"] = "Список задач с истекающим сроком окончания";
-    ViewData["ManagerFullName"] = Model.FullName;
+    ViewData["ManagerFullName"] = Model.ManagerFullName;
 }
 
-<h1>Список задач с истекающим сроком окончания</h1>
-<section>
-
-</section>
+<div class="task-list">
+    <h1>Список задач с истекающим сроком окончания</h1>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Дата и время окончания</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var taskItem in Model.OverdueTasks)
+                {
+                    <tr>
+                        <td>@taskItem.Name</td>
+                        <td>@taskItem.EndDate.ToString("dd.MM.yyyy HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>
 
 

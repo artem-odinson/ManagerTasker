@@ -44,6 +44,11 @@ namespace MenagerTasker.MVC
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "OverdueTasks",
+                    pattern: "Tasks/Overdue",
+                    new { Controller = "Home", Action = "OverdueTaskList" });
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

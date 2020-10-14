@@ -7,6 +7,7 @@
     ViewData["ManagerFullName"] = Model.FullName;
 }
 
+<div class="task-list">
     <h1>Список задач</h1>
     <section>
         <table>
@@ -21,9 +22,7 @@
             <tbody>
                 @foreach (var taskItem in Model.Tasks)
                 {
-                    var delta = taskItem.EndDate - taskItem.CreationDate;
-                    var total = taskItem.CreationDate.AddHours(delta.TotalHours);
-                    bool isOverdue = total >= DateTime.Now && taskItem.Status == Core.TaskStatus.Created;
+                    bool isOverdue = ((DateTime)ViewData["OverdueDateTime"]) >= taskItem.EndDate && taskItem.Status == Core.TaskStatus.Created;
                     string className = isOverdue ? "overdue-task" : "normal-task";
                     <tr class="@className">
                         <td>@taskItem.Name</td>
@@ -35,3 +34,6 @@
             </tbody>
         </table>
     </section>
+
+</div>
+    
