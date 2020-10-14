@@ -1,0 +1,31 @@
+﻿html, body{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.main-menu > nav{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.main-menu a{
+    text-decoration:none;
+    color: black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.normal-task{
+    background-color: lightgreen;
+}
+
+.overdue-task {
+    background-color: red;
+}

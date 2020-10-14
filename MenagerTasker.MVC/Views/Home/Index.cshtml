@@ -1,0 +1,37 @@
+﻿@using Core = MenagerTasker.Core;
+
+@model MenagerTasker.Core.Entities.Manager
+
+@{
+    ViewData["Title"] = "Список задач";
+    ViewData["ManagerFullName"] = Model.FullName;
+}
+
+    <h1>Список задач</h1>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Дата и время начала</th>
+                    <th>Дата и время окончания</th>
+                    <th>Статус актиивности</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var taskItem in Model.Tasks)
+                {
+                    var delta = taskItem.EndDate - taskItem.CreationDate;
+                    var total = taskItem.CreationDate.AddHours(delta.TotalHours);
+                    bool isOverdue = total >= DateTime.Now && taskItem.Status == Core.TaskStatus.Created;
+                    string className = isOverdue ? "overdue-task" : "normal-task";
+                    <tr class="@className">
+                        <td>@taskItem.Name</td>
+                        <td>@taskItem.CreationDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@taskItem.EndDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@taskItem.Status.ToString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>

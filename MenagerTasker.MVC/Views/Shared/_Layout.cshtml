@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] </title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="main-menu">        
+        <nav>
+            <a asp-controller="Home" asp-action="Index">Добро пожаловать @ViewData["ManagerFullName"]</a>
+            <a asp-controller="Home" asp-action="Index">Все задачи</a>
+            <a asp-controller="Home" asp-action="OverdueTaskList">Задачи с истекающим сроком окончания</a>
+        </nav>
+    </header>
+    <main>
+       @RenderBody()
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>   
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
